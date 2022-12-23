@@ -725,3 +725,18 @@ function send_wa($data)
     // }
     // die();
 }
+
+function formatPhoneNo($no) {
+    switch (true) {
+        case (preg_match('#^8\d{8}$#', $no)):
+            $no = '62' . $no;
+            break;
+        case (preg_match('#^08\d{8}$#', $no)):
+            $no = '62' . substr($no, 1);
+            break;
+        default:
+            throw new InvalidArgumentException('Invalid format supplied');
+            break;
+    }
+    return $no;
+}

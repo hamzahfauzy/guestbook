@@ -40,8 +40,7 @@ if(request() == 'POST')
     $wa = $db->single('forms',['event_id'=>$event->id,'type'=>'wa']);
     if($wa)
     {
-        $no_wa = $_POST[$wa->name];
-        $no_wa = $no_wa[0] == '0' ? '62' . substr($no_wa, 1) : $no_wa;
+        $no_wa = formatPhoneNo($_POST[$wa->name]);
         // generate report first with html2pdf
         $foto = $db->single('forms',['event_id'=>$event->id,'type'=>'foto']);
         if($foto)
@@ -70,11 +69,11 @@ if(request() == 'POST')
         // $html2pdf->output(); 
         if(!is_dir('pdf'))
         {
-            mkdir('pdf',777);
+            mkdir('pdf');
         }
         
-        $name = $nama ? $nama->name : strtotime('now');
-        $filepdf = 'pdf/'.$name.'.pdf';
+        $name = $nama ? $_POST[$nama->name] : strtotime('now');
+        $filepdf = 'pdf/'.strtotime('now').'.pdf';
         $html2pdf->output(__DIR__ . "/../public/". $filepdf,'F');
 
         send_wa(json_decode('{
