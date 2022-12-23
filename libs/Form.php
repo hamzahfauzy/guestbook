@@ -5,6 +5,8 @@ class Form
     static function input($type,$name,$attribute = [])
     {
         if($type == 'foto') $type = 'file';
+        if($type == 'nama') $type = 'text';
+        if($type == 'wa') $type = 'tel';
         $attr = '';
         $vals = isset($attribute['value']) ? $attribute['value'] : '';
         if($type == 'date' && !isset($attribute['value'])) $attribute['value'] = date('Y-m-d');
