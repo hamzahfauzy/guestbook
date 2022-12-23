@@ -40,6 +40,8 @@ if(request() == 'POST')
     $wa = $db->single('forms',['event_id'=>$event->id,'type'=>'wa']);
     if($wa)
     {
+        $no_wa = $_POST[$wa->name];
+        $no_wa = $no_wa[0] == '0' ? '62' . substr($no_wa, 1) : $no_wa;
         // generate report first with html2pdf
         $foto = $db->single('forms',['event_id'=>$event->id,'type'=>'foto']);
         if($foto)
@@ -77,7 +79,7 @@ if(request() == 'POST')
 
         send_wa(json_decode('{
             "device": "'.config('WA_API_DEVICE').'",
-            "receiver": "'.$_POST[$wa->name].'",
+            "receiver": "'.$no_wa.'",
             "type": "chat",
             "message": "Hai '.$name.', silahkan download PDF Buku Tamu Digital Anda",
             "simulate_typing": 1
@@ -85,7 +87,7 @@ if(request() == 'POST')
 
         send_wa(json_decode('{
             "device": "'.config('WA_API_DEVICE').'",
-            "receiver": "'.$_POST[$wa->name].'",
+            "receiver": "'.$no_wa.'",
             "type": "file",
             "message": "'.$name.'.pdf",
             "file_url": "'.routeTo($filepdf).'",
