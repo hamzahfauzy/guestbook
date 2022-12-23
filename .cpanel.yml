@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/smknpula/guestbook.smkn1pulaurakyat.sch.id
+    - /bin/cp -a * $DEPLOYPATH

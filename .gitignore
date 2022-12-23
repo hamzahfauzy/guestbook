@@ -1,0 +1,6 @@
+config/app.php
+public/pdf
+public/uploads
+
+#for development purpose
+reset.php 
