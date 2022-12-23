@@ -40,7 +40,8 @@ if(request() == 'POST')
     $wa = $db->single('forms',['event_id'=>$event->id,'type'=>'wa']);
     if($wa)
     {
-        $no_wa = formatPhoneNo($_POST[$wa->name]);
+        $no_wa = $_POST[$wa->name];
+        $no_wa = $no_wa[0] == '0' ? '62'.substr($no_wa, 1) : $no_wa;
         // generate report first with html2pdf
         $foto = $db->single('forms',['event_id'=>$event->id,'type'=>'foto']);
         if($foto)

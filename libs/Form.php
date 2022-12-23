@@ -116,6 +116,10 @@ class Form
     static function getData($type, $index)
     {
         if(!$index) return '';
+        if($type == 'foto') $type = 'file';
+        if($type == 'nama') $type = 'text';
+        if($type == 'wa') $type = 'tel';
+        
         if(substr($type,0,7) == 'options')
         {
             $types = explode(':',$type);
