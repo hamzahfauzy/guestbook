@@ -694,7 +694,7 @@ function slug($text, string $divider = '-')
   return $text;
 }
 
-function send_wa($number, $message, $is_media = false)
+function send_wa($number, $message, $url = false)
 {
     $base_url = "https://wa.z-techno.com/app/api/";
     $endpoint = $base_url . "send-message";
@@ -705,9 +705,10 @@ function send_wa($number, $message, $is_media = false)
         'message' => $message
     ];
 
-    if($is_media)
+    if($url)
     {
-        $data['url'] = $data['message'];
+        $data['url'] = $url;
+        $data['caption'] = $data['message'];
         $endpoint = $base_url . "send-media";
     }
     
