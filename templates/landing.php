@@ -25,14 +25,14 @@
 <body style="min-height:auto;">
 	<div class="container">
         <div class="row mt-4">
-            <div class="col-sm-12 col-md-6 mx-auto">
+            <div class="col-sm-12 col-md-10 mx-auto">
                 <div class="card full-height">
                     <div class="card-body">
                         <div class="card-title text-center"><?=$event->name?></div>
                         <p class="text-center"><?=$event->description?></p>
                         
                         <center>
-                            <img src="<?=routeTo($event->thumbnail)?>" width="100%" height="auto" alt="<?=$event->name?>" style="object-fit:contain;">
+                            <img src="<?=routeTo($event->thumbnail)?>" width="100%" height="250px" alt="<?=$event->name?>" style="object-fit:contain;">
                         </center>
 
                         <form action="<?=routeTo('submit-submission',['slug'=>$event->slug])?>" method="post" enctype="multipart/form-data">
