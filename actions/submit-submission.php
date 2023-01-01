@@ -79,7 +79,7 @@ if(request() == 'POST')
 
         send_wa($no_wa,"Hai $name, silahkan download PDF Buku Tamu Digital Anda");
 
-        send_wa($no_wa,$name,routeTo($filepdf));
+        send_wa($no_wa,$name.'.pdf',routeTo($filepdf));
     }
 
     header('location:'.routeTo('thank-you'));
