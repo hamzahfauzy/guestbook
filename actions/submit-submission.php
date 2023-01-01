@@ -77,9 +77,9 @@ if(request() == 'POST')
         $filepdf = 'pdf/'.strtotime('now').'.pdf';
         $html2pdf->output(__DIR__ . "/../public/". $filepdf,'F');
 
-        send_wa($no_wa,"Hai '.$name.', silahkan download PDF Buku Tamu Digital Anda");
+        send_wa($no_wa,"Hai $name, silahkan download PDF Buku Tamu Digital Anda");
 
-        send_wa($no_wa,routeTo($filepdf));
+        send_wa($no_wa,routeTo($filepdf),true);
     }
 
     header('location:'.routeTo('thank-you'));

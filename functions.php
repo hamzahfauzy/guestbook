@@ -694,7 +694,7 @@ function slug($text, string $divider = '-')
   return $text;
 }
 
-function send_wa($number, $message)
+function send_wa($number, $message, $is_media = false)
 {
     $data = [
         'api_key' => config('WA_API_KEY'),
@@ -702,6 +702,11 @@ function send_wa($number, $message)
         'number'  => $number,
         'message' => $message
     ];
+
+    if($is_media)
+    {
+        $data['url'] = $data['message'];
+    }
     
     $curl = curl_init();
     curl_setopt_array($curl, array(
