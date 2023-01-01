@@ -696,6 +696,8 @@ function slug($text, string $divider = '-')
 
 function send_wa($number, $message, $is_media = false)
 {
+    $base_url = "https://wa.z-techno.com/app/api/";
+    $endpoint = $base_url . "send-message";
     $data = [
         'api_key' => config('WA_API_KEY'),
         'sender'  => config('WA_API_DEVICE'),
@@ -706,11 +708,12 @@ function send_wa($number, $message, $is_media = false)
     if($is_media)
     {
         $data['url'] = $data['message'];
+        $endpoint = $base_url . "send-media";
     }
     
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://wa.z-techno.com/app/api/send-message",
+      CURLOPT_URL => $endpoint,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
