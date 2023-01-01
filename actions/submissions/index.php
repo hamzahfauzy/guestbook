@@ -56,7 +56,7 @@ if(isset($_GET['draw']))
         $where = " AND (".implode(' OR ',$_where).")";
     }
 
-    $db->query = "SELECT * FROM $table $where ORDER BY id ASC LIMIT $start,$length";
+    $db->query = "SELECT * FROM $table $where ORDER BY id DESC LIMIT $start,$length";
     $data  = $db->exec('all');
     $data  = array_map(function($d){
         $id = $d->id;
@@ -92,7 +92,7 @@ if(isset($_GET['draw']))
             {
                 $data_value = Form::getData($field['type'],$d->{$col},true);
 
-                if($field['type'] == 'file')
+                if(in_array($field['type'],['file','foto']))
                 {
                     $data_value = '<a href="'.asset($data_value).'" target="_blank">Lihat File</a>';
                 }
