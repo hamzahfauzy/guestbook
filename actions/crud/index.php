@@ -80,9 +80,9 @@ if(isset($_GET['draw']))
                     $data_value = number_format($data_value);
                 }
 
-                if($field['type'] == 'file')
+                if(in_array($field['type'],['file','foto']))
                 {
-                    $data_value = '<a href="'.asset($data_value).'" target="_blank">Lihat File</a>';
+                    $data_value = '<a href="'.asset($data_value).'" target="_blank">Lihat '.ucfirst($field['type']).'</a>';
                 }
             }
             else

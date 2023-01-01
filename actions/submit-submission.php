@@ -77,22 +77,9 @@ if(request() == 'POST')
         $filepdf = 'pdf/'.strtotime('now').'.pdf';
         $html2pdf->output(__DIR__ . "/../public/". $filepdf,'F');
 
-        send_wa(json_decode('{
-            "device": "'.config('WA_API_DEVICE').'",
-            "receiver": "'.$no_wa.'",
-            "type": "chat",
-            "message": "Hai '.$name.', silahkan download PDF Buku Tamu Digital Anda",
-            "simulate_typing": 1
-        }'));
+        send_wa($no_wa,"Hai '.$name.', silahkan download PDF Buku Tamu Digital Anda");
 
-        send_wa(json_decode('{
-            "device": "'.config('WA_API_DEVICE').'",
-            "receiver": "'.$no_wa.'",
-            "type": "file",
-            "message": "'.$name.'.pdf",
-            "file_url": "'.routeTo($filepdf).'",
-            "simulate_typing": 1
-        }'));
+        send_wa($no_wa,routeTo($filepdf));
     }
 
     header('location:'.routeTo('thank-you'));

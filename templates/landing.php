@@ -49,10 +49,15 @@
                                     $type  = $field_data['type'];
                                 }
                                 $label = _ucwords($label);
+                                $attr = ['class'=>"form-control","placeholder"=>$label,"value"=>$old[$field]??''];
+                                if($type == 'foto')
+                                {
+                                    $attr['accept'] = "image/png, image/jpeg, image/jpg";
+                                }
                             ?>
                             <div class="form-group">
                                 <label for=""><?=$label?></label>
-                                <?= Form::input($type, $field, ['class'=>"form-control","placeholder"=>$label,"value"=>$old[$field]??'']) ?>
+                                <?= Form::input($type, $field, $attr) ?>
                             </div>
                             <?php endforeach ?>
                             <div class="form-group">
